@@ -1,9 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CleanArthitecture.Application.Services.Authentication;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace CleanArthitecture.Application
 {
@@ -11,6 +7,7 @@ namespace CleanArthitecture.Application
     {
         public static IServiceCollection RegisterApplicationServices(this IServiceCollection services)
         {
+            services.AddScoped<IAuthenticationServices, AuthenticationServices>();
             return services;
         }
     }
