@@ -1,14 +1,17 @@
-﻿using CleanArthitecture.Domain.Authentication;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CleanArthitecture.Application.Common.Interfaces.Authentication;
+
 
 namespace CleanArthitecture.Application.Services.Authentication
 {
     public class AuthenticationServices : IAuthenticationServices
     {
+        private readonly IJwtTokenGenerator _jwtToken;
+
+        public AuthenticationServices(IJwtTokenGenerator jwtToken)
+        {
+            _jwtToken = jwtToken;
+        }
+
         public AuthenticationRespones Login(LoginRequest loginRequest)
         {
             return new AuthenticationRespones
@@ -17,8 +20,10 @@ namespace CleanArthitecture.Application.Services.Authentication
 
         public AuthenticationRespones Register(RegisterRequest registerRequest)
         {
+            var customerId = 1;
+            var token = _jwtToken.GenerateToken(customerId,"","");
             return new AuthenticationRespones
-            (1, registerRequest.FirstName, registerRequest.LastName, registerRequest.UserName, "token");
+            (1, registerRequest.FirstName, registerRequest.LastName, registerRequest.UserName, token);
         }
     }
 }

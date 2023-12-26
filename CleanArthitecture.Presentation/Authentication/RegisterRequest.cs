@@ -1,4 +1,4 @@
-﻿namespace CleanArthitecture.Domain.Authentication
+﻿namespace CleanArthitecture.Presentation.Authentication
 {
     public record RegisterRequest
     (

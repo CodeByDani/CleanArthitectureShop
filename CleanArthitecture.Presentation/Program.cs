@@ -17,7 +17,7 @@ namespace CleanArthitecture.Presentation
             {
                 builder.Services
                     .RegisterApplicationServices()
-                    .RegisterInfrastructureServices()
+                    .RegisterInfrastructureServices(builder.Configuration)
                     .RegisterPersistenceServices(builder.Configuration)
                     .RegisterPresentationServices();
             }
