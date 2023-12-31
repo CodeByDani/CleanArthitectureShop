@@ -2,6 +2,9 @@
 using CleanArthitecture.Application;
 using CleanArthitecture.Infrastructure;
 using CleanArthitecture.Infrastructure.Persistence;
+using CleanArthitecture.Presentation.Filters;
+using CleanArthitecture.Presentation.Middleware;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 
 namespace CleanArthitecture.Presentation
 {
@@ -12,7 +15,6 @@ namespace CleanArthitecture.Presentation
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-
             builder.Services.AddControllers();
             {
                 builder.Services
@@ -23,16 +25,16 @@ namespace CleanArthitecture.Presentation
             }
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
-
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
-                app.UseSwaggerUI();
+                app.UseSwaggerUI(); 
             }
 
+            app.UseExceptionHandler("/error");
             app.UseHttpsRedirection();
 
             app.UseAuthorization();

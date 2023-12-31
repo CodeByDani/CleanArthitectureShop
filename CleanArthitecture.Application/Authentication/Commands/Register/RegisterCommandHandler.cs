@@ -1,4 +1,5 @@
-﻿using CleanArthitecture.Application.Common.Interfaces;
+﻿using CleanArthitecture.Application.Common.Errors;
+using CleanArthitecture.Application.Common.Interfaces;
 using CleanArthitecture.Application.Common.Interfaces.Authentication;
 using CleanArthitecture.Application.Services.Authentication;
 using CleanArthitecture.Domain.Entities;
@@ -27,7 +28,7 @@ public class RegisterCommandHandler :
 
         if (c is not null)
         {
-            throw new Exception("Hi From Error");
+            throw new DuplicateEmailException();
         }
 
         var customer = new Customer
