@@ -4,7 +4,7 @@ namespace CleanArthitecture.Domain.Entities
 {
     public class Product:BaseEntity
     {
-        public string Name { get; set; }
+        public string NameProduct { get; set; }
         public string Description { get; set; }
         public long CategoryID { get; set; }
         public double Price { get; set; }
