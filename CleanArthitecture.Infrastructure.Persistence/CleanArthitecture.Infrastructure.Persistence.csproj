@@ -22,4 +22,9 @@
     <ProjectReference Include="..\CleanArthitecture.Domain\CleanArthitecture.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+    <Folder Include="Repositories\" />
+  </ItemGroup>
+
 </Project>

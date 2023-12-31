@@ -1,5 +1,5 @@
-﻿using CleanArthitecture.Application.Services.Authentication;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
+using System.Reflection;
 
 namespace CleanArthitecture.Application
 {
@@ -7,7 +7,8 @@ namespace CleanArthitecture.Application
     {
         public static IServiceCollection RegisterApplicationServices(this IServiceCollection services)
         {
-            services.AddScoped<IAuthenticationServices, AuthenticationServices>();
+            services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
+
             return services;
         }
     }

@@ -1,5 +1,7 @@
-﻿using CleanArthitecture.Application.Services.Authentication;
-using CleanArthitecture.Domain.Authentication;
+﻿using CleanArthitecture.Application.Authentication.Commands.Register;
+using CleanArthitecture.Application.Authentication.Queries;
+using CleanArthitecture.Presentation.Authentication;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CleanArthitecture.Presentation.Controllers
@@ -8,23 +10,26 @@ namespace CleanArthitecture.Presentation.Controllers
     [Route("api/auth")]
     public class AuthenticationController : ControllerBase
     {
-        private readonly IAuthenticationServices _auth;
-        public AuthenticationController(IAuthenticationServices auth)
+        private readonly IMediator _mediator;
+        public AuthenticationController(IMediator mediator)
         {
-            _auth = auth;
+            _mediator = mediator;
         }
         //!Register
         [HttpPost("register")]
-        public IActionResult Register(RegisterRequest request)
+        public async Task<IActionResult> Register(RegisterRequest request)
         {
-           var authResult = _auth.Register(request);
+            var command = new RegisterCommand(request.FirstName, request.LastName, request.Email, request.Password);
+            var authResult = await _mediator.Send(command);
             return Ok(authResult);
         }
         //! Login
         [HttpPost("login")]
-        public IActionResult Login(LoginRequest request) {
-            var authResult = _auth.Login(request);
-            return Ok(authResult); 
+        public async Task<IActionResult> Login(LoginRequest request)
+        {
+            var query = new LoginQuery(request.Email, request.Password);
+            var authResult = await _mediator.Send(query);
+            return Ok(authResult);
         }
     }
 }
