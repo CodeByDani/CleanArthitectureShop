@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CleanArthitecture.Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(DBContextConnection))]
-    [Migration("20231228161845_last")]
-    partial class last
+    [Migration("20240101181711_init2")]
+    partial class init2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -42,10 +42,6 @@ namespace CleanArthitecture.Infrastructure.Persistence.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<string>("Details")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FullAddress")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -229,7 +225,7 @@ namespace CleanArthitecture.Infrastructure.Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("varbinary(max)");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("NameProduct")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

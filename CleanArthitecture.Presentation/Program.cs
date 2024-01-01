@@ -2,9 +2,6 @@
 using CleanArthitecture.Application;
 using CleanArthitecture.Infrastructure;
 using CleanArthitecture.Infrastructure.Persistence;
-using CleanArthitecture.Presentation.Filters;
-using CleanArthitecture.Presentation.Middleware;
-using Microsoft.AspNetCore.Mvc.Infrastructure;
 
 namespace CleanArthitecture.Presentation
 {
@@ -31,12 +28,12 @@ namespace CleanArthitecture.Presentation
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
-                app.UseSwaggerUI(); 
+                app.UseSwaggerUI();
             }
 
             app.UseExceptionHandler("/error");
             app.UseHttpsRedirection();
-
+            app.UseAuthentication();
             app.UseAuthorization();
 
 

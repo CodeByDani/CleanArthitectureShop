@@ -1,7 +1,4 @@
-﻿using CleanArthitecture.Presentation.Common.Error;
-using Microsoft.AspNetCore.Mvc.Infrastructure;
-
-namespace CleanArthitecture.Presentation
+﻿namespace CleanArthitecture.Presentation
 {
     public static class ConfigureServices
     {

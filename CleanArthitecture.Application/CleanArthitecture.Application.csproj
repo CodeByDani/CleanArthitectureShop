@@ -15,4 +15,8 @@
     <ProjectReference Include="..\CleanArthitecture.Domain\CleanArthitecture.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Services\Address\Queries\" />
+  </ItemGroup>
+
 </Project>

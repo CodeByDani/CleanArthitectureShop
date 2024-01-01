@@ -21,7 +21,11 @@ namespace CleanArthitecture.Presentation.Controllers
         {
             var command = new RegisterCommand(request.FirstName, request.LastName, request.Email, request.Password);
             var authResult = await _mediator.Send(command);
-            return Ok(authResult);
+            return authResult.MatchFirst(
+
+                authResult => Ok(authResult),
+                err => Problem(statusCode: StatusCodes.Status409Conflict, title: err.Description)
+            );
         }
         //! Login
         [HttpPost("login")]

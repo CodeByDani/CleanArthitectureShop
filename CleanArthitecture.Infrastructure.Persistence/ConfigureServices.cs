@@ -13,6 +13,8 @@ namespace CleanArthitecture.Infrastructure.Persistence
         public static IServiceCollection RegisterPersistenceServices(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddScoped<ICustomerRepository, CustomerRepository>();
+            services.AddScoped<IAddressRepository, AddressRepository>();
+
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddDbContext<DBContextConnection>(options =>
             options.UseSqlServer(configuration.GetConnectionString("DBContextConnection")));
