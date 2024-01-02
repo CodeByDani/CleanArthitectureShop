@@ -1,7 +1,6 @@
 ﻿using CleanArthitecture.Application.Common.Interfaces.Authentication;
 using CleanArthitecture.Application.Common.Interfaces.Services;
 using CleanArthitecture.Domain.Entities;
-using Common.Helper;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
@@ -23,7 +22,7 @@ namespace CleanArthitecture.Infrastructure.Authentication
 
         public string GenerateToken(Customer customer)
         {
-            var siginingCredentials = new SigningCredentials(
+            var signingCredentials = new SigningCredentials(
                 new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSettings.Secret)),
                 SecurityAlgorithms.HmacSha256);
 
@@ -32,15 +31,16 @@ namespace CleanArthitecture.Infrastructure.Authentication
                 new Claim(JwtRegisteredClaimNames.Sub,customer.Id.ToString()),
                 new Claim(JwtRegisteredClaimNames.GivenName,customer.FirstName),
                 new Claim(JwtRegisteredClaimNames.FamilyName,customer.LastName),
-                new Claim(JwtRegisteredClaimNames.Jti,LongExxtention.GenerateLongRandom().ToString())
             };
-            var SecurityToken = new JwtSecurityToken(
-                issuer: _jwtSettings.Issuer,
+
+            var securityToken = new JwtSecurityToken(
+                issuer: _jwtSettings.Isuuer,
                 audience: _jwtSettings.Audience,
                 expires: _dateTimeProvider.UtcNow.AddMinutes(_jwtSettings.ExpiryMinutes),
                 claims: claims,
-                signingCredentials: siginingCredentials);
-            return new JwtSecurityTokenHandler().WriteToken(SecurityToken);
+                signingCredentials: signingCredentials);
+
+            return new JwtSecurityTokenHandler().WriteToken(securityToken);
         }
     }
 }

@@ -2,6 +2,8 @@
 using CleanArthitecture.Application;
 using CleanArthitecture.Infrastructure;
 using CleanArthitecture.Infrastructure.Persistence;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.OpenApi.Models;
 
 namespace CleanArthitecture.Presentation
 {
@@ -21,7 +23,30 @@ namespace CleanArthitecture.Presentation
                     .RegisterPresentationServices();
             }
             builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
+            builder.Services.AddSwaggerGen(option =>
+            {
+
+                var jwtSecurityScheme = new OpenApiSecurityScheme
+                {
+                    Scheme = "bearer",
+                    BearerFormat = "JWT",
+                    Name = "JWT Authentication",
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.Http,
+                    Description = "Enter Token",
+
+                    Reference = new OpenApiReference
+                    {
+                        Id = JwtBearerDefaults.AuthenticationScheme,
+                        Type = ReferenceType.SecurityScheme
+                    }
+                };
+                option.AddSecurityDefinition(jwtSecurityScheme.Reference.Id, jwtSecurityScheme);
+                option.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    { jwtSecurityScheme, Array.Empty<string>() }
+                });
+            });
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
