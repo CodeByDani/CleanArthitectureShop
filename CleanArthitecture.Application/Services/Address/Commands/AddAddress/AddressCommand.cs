@@ -3,6 +3,7 @@ using MediatR;
 
 public record AddressCommand
 (
+    long CustomerId,
     string City,
     string Region,
     string PostalCode,

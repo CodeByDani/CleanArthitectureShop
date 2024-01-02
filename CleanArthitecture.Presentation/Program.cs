@@ -20,7 +20,8 @@ namespace CleanArthitecture.Presentation
                     .RegisterApplicationServices()
                     .RegisterInfrastructureServices(builder.Configuration)
                     .RegisterPersistenceServices(builder.Configuration)
-                    .RegisterPresentationServices();
+                    .RegisterPresentationServices()
+                    .AddAuth(builder.Configuration);
             }
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen(option =>
