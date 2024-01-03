@@ -19,14 +19,6 @@ public class AddressCommandHandler : IRequestHandler<AddressCommand, Domain.Enti
     }
     public async Task<Domain.Entities.Address> Handle(AddressCommand request, CancellationToken cancellationToken)
     {
-        //var address = new Domain.Entities.Address
-        //{
-        //    CustomerId = request.CustomerId,
-        //    City = request.City,
-        //    Details = request.Details,
-        //    PostalCode = request.PostalCode,
-        //    Region = request.Region,
-        //};
         var address = _mapper.Map<Domain.Entities.Address>(request);
         _addressRepository.Add(address);
         await _uow.SaveAsync();

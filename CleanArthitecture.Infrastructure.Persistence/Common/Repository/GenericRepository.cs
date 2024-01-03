@@ -30,7 +30,7 @@ public class GenericRepository<TEntity>(DBContextConnection dbContext) where TEn
 
     public void Update(TEntity entity)
     {
-        _dbContext.Set<TEntity>().Attach(entity);
+        _dbContext.Set<TEntity>().Update(entity);
         _dbContext.Entry(entity).State = EntityState.Modified;
     }
 }

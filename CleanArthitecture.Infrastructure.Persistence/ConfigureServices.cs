@@ -14,6 +14,8 @@ namespace CleanArthitecture.Infrastructure.Persistence
         {
             services.AddScoped<ICustomerRepository, CustomerRepository>();
             services.AddScoped<IAddressRepository, AddressRepository>();
+            services.AddScoped<ICategoryRepository, CategoryRepository>();
+
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddDbContext<DBContextConnection>(options =>

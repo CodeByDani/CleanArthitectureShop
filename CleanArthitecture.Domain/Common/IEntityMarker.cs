@@ -1,3 +1,5 @@
 ﻿namespace CleanArthitecture.Domain.Common;
 
-public interface IEntityMarker { }
+public interface IEntityMarker
+{
+}

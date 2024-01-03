@@ -7,8 +7,5 @@ namespace CleanArthitecture.Infrastructure.Persistence.Repositories;
 public class AddressRepository(DBContextConnection dbContext) :
     GenericRepository<Address>(dbContext), IAddressRepository
 {
-    //public void Add(Address address)
-    //{
-    //    _dbContext.Addresses.AddAsync(address);
-    //}
+
 }
