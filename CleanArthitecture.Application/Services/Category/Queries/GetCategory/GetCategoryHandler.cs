@@ -5,12 +5,12 @@ using MediatR;
 
 namespace CleanArthitecture.Application.Services.Category.Queries.GetCategory;
 
-public class GetCategoryHandler : IRequestHandler<GetCategoryQuery, CategoryDTO>
+public class GetProductHandler : IRequestHandler<GetCategoryQuery, CategoryDTO>
 {
     private readonly ICategoryRepository _categoryRepository;
     private readonly IMapper _mapper;
 
-    public GetCategoryHandler(ICategoryRepository categoryRepository, IMapper mapper)
+    public GetProductHandler(ICategoryRepository categoryRepository, IMapper mapper)
     {
         _categoryRepository = categoryRepository;
         _mapper = mapper;

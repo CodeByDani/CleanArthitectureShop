@@ -2,7 +2,7 @@
 
 namespace CleanArthitecture.Domain.Entities
 {
-    public class Product : BaseEntity
+    public class Product : BaseEntity, IEntityMarker
     {
         public string NameProduct { get; set; }
         public string Description { get; set; }
@@ -11,7 +11,7 @@ namespace CleanArthitecture.Domain.Entities
         public string Color { get; set; }
 
         public Category Category { get; set; }
-        public long CategoryID { get; set; }
+        public long CategoryId { get; set; }
         public ICollection<OrderItem> OrderItems { get; set; }
 
     }

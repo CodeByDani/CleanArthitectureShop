@@ -9,9 +9,8 @@ namespace CleanArthitecture.Infrastructure.Persistence.Configure
         public void Configure(EntityTypeBuilder<Order> builder)
         {
             builder
-           .HasOne(o => o.Payment)
+           .HasMany(o => o.Payment)
            .WithOne(p => p.Order)
-           .HasForeignKey<Payment>(p => p.OrderID)
            .OnDelete(DeleteBehavior.Restrict);
         }
     }

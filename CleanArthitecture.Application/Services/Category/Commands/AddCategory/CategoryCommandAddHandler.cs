@@ -5,13 +5,13 @@ using MediatR;
 
 namespace CleanArthitecture.Application.Services.Category.Commands.AddCategory;
 
-public class CategoryCommandAddHandler : IRequestHandler<CategoryCommandAdd>
+public class AddProductHandler : IRequestHandler<CategoryCommandAdd>
 {
     private readonly ICategoryRepository _categoryRepository;
     private readonly IUnitOfWork _uow;
     private readonly IMapper _mapper;
 
-    public CategoryCommandAddHandler(ICategoryRepository categoryRepository, IUnitOfWork uow, IMapper mapper)
+    public AddProductHandler(ICategoryRepository categoryRepository, IUnitOfWork uow, IMapper mapper)
     {
         _categoryRepository = categoryRepository;
         _uow = uow;

@@ -5,13 +5,13 @@ using MediatR;
 
 namespace CleanArthitecture.Application.Services.Category.Commands.UpdateCategory;
 
-public class UpdateCategoryHandler : IRequestHandler<UpdateCategoryCommand>
+public class UpdateProductHandler : IRequestHandler<UpdateCategoryCommand>
 {
     private readonly ICategoryRepository _categoryRepository;
     private readonly IUnitOfWork _uow;
     private readonly IMapper _mapper;
 
-    public UpdateCategoryHandler(ICategoryRepository categoryRepository, IUnitOfWork uow, IMapper mapper)
+    public UpdateProductHandler(ICategoryRepository categoryRepository, IUnitOfWork uow, IMapper mapper)
     {
         _categoryRepository = categoryRepository;
         _uow = uow;
