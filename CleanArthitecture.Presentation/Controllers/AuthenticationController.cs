@@ -1,6 +1,7 @@
 ﻿using CleanArthitecture.Application.Authentication.Commands.Register;
 using CleanArthitecture.Application.Authentication.Queries;
 using CleanArthitecture.Presentation.Authentication;
+using MapsterMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,9 +12,11 @@ namespace CleanArthitecture.Presentation.Controllers
     public class AuthenticationController : ControllerBase
     {
         private readonly IMediator _mediator;
-        public AuthenticationController(IMediator mediator)
+        private readonly IMapper _mapper;
+        public AuthenticationController(IMediator mediator, IMapper mapper)
         {
             _mediator = mediator;
+            _mapper = mapper;
         }
         //!Register
         [HttpPost("register")]
