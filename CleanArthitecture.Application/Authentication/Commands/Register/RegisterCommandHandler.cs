@@ -22,7 +22,7 @@ public class RegisterCommandHandler :
 
 
     public RegisterCommandHandler(IJwtTokenGenerator jwtToken, ICustomerRepository customerRepository,
-        IUnitOfWork uow, IMapper mapper, IMediator mediator, )
+        IUnitOfWork uow, IMapper mapper, IMediator mediator)
     {
         _jwtToken = jwtToken;
         _customerRepository = customerRepository;
