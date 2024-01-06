@@ -2,13 +2,12 @@
 
 namespace CleanArthitecture.Domain.Entities
 {
-    public class OrderItem : BaseEntity
+    public class OrderItem : BaseEntity, IEntityMarker
     {
-        public double OldPrice { get; set; }
-        public double NewPrice { get; set; }
-        public long ProductID { get; set; }
-        public long OrderID { get; set; }
-        private long Quntity { get; set; }
+        public double TotalPrice { get; set; }
+        public long ProductId { get; set; }
+        public long OrderId { get; set; }
+        public int Quantity { get; set; }
         public Product Product { get; set; }
         public Order Order { get; set; }
 

@@ -23,6 +23,9 @@
     <Folder Include="Services\Category\Commands\DeleteCategory\" />
     <Folder Include="Services\Category\Commands\UpdateCategory\" />
     <Folder Include="Services\Category\Queries\GetCategory\" />
+    <Folder Include="Services\OrderItem\Queries\" />
+    <Folder Include="Services\Order\Commands\AddOrder\" />
+    <Folder Include="Services\Order\Queries\" />
   </ItemGroup>
 
 </Project>

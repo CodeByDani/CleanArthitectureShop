@@ -1,10 +1,9 @@
 ﻿using CleanArthitecture.Domain.Common;
 using CleanArthitecture.Domain.Enums;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CleanArthitecture.Domain.Entities
 {
-    public class Payment:BaseEntity
+    public class Payment : BaseEntity, IEntityMarker
     {
         public long CustomerID { get; set; }
         public DateTime PaymentDate { get; set; }

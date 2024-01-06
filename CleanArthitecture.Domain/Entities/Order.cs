@@ -2,11 +2,10 @@
 
 namespace CleanArthitecture.Domain.Entities
 {
-    public class Order : BaseEntity
+    public class Order : BaseEntity, IEntityMarker
     {
-        public long CustomerID { get; set; }
+        public long CustomerId { get; set; }
         public DateTime OrderDate { get; set; }
-        public DateTime PickupDate { get; set; }
         public double Amount { get; set; }
         public ICollection<OrderItem> OrderItems { get; set; }
         public Customer Customer { get; set; }
