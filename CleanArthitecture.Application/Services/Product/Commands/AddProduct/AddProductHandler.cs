@@ -21,7 +21,6 @@ public class AddProductHandler : IRequestHandler<AddProductCommand>
     public async Task Handle(AddProductCommand request, CancellationToken cancellationToken)
     {
         var product = _mapper.Map<Domain.Entities.Product>(request);
-        _productRepository.Add(product);
-        await _uow.SaveAsync();
+        _productRepository.Add(product); await _uow.SaveAsync();
     }
 }

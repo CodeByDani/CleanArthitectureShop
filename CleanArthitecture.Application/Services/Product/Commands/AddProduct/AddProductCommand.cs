@@ -9,6 +9,6 @@ public record AddProductCommand
  double Price,
  int Quntity,
  string Color,
- long CategoryID
+ long CategoryId
 
 ) : IRequest;

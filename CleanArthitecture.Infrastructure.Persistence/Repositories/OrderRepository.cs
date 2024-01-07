@@ -7,11 +7,6 @@ namespace CleanArthitecture.Infrastructure.Persistence.Repositories;
 public class OrderRepository(DBContextConnection dbContext) :
     GenericRepository<Order>(dbContext), IOrderRepository
 {
-    public void Add(Order order)
-    {
-        var result = _dbContext.Orders.AddAsync(order).Result;
-    }
-
     public long ReturnId(Order order)
     {
         return order.Id;

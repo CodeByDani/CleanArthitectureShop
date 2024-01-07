@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace CleanArthitecture.Application.Common.Errors
 {
-    public class ValidationErrors : Exception, IServiceException
+    public class DuplicateEmailException : Exception, IServiceException
     {
-        public HttpStatusCode StatusCode => HttpStatusCode.Forbidden;
+        public HttpStatusCode StatusCode => HttpStatusCode.Conflict;
 
-        public string ErrorMessage => "Email already Exist";
+        public string ErrorMessage => "Validation Error";
     }
 }

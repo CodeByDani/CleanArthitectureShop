@@ -18,6 +18,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Common\Errors\" />
+    <Folder Include="Common\ValidationBehaviors\" />
     <Folder Include="DTO\" />
     <Folder Include="Services\Address\Queries\" />
     <Folder Include="Services\Category\Commands\DeleteCategory\" />
@@ -26,6 +28,7 @@
     <Folder Include="Services\OrderItem\Queries\" />
     <Folder Include="Services\Order\Commands\AddOrder\" />
     <Folder Include="Services\Order\Queries\" />
+    <Folder Include="Services\Payment\Queries\" />
   </ItemGroup>
 
 </Project>

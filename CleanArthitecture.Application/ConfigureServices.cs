@@ -3,6 +3,8 @@ using Mapster;
 using MapsterMapper;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
+using CleanArthitecture.Application.Common.ValidationBehaviors;
+using MediatR;
 
 namespace CleanArthitecture.Application
 {
@@ -19,7 +21,11 @@ namespace CleanArthitecture.Application
             //! Fluent Validation
             services.AddFluentValidation(cfg => cfg.RegisterValidatorsFromAssembly(Assembly.GetExecutingAssembly()));
             //! For MediatR
-            services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
+            services.AddMediatR(cfg =>
+                cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
+            services.AddScoped(
+                typeof(IPipelineBehavior<,>),
+                typeof(ValidationBehavior<,>));
             return services;
         }
     }

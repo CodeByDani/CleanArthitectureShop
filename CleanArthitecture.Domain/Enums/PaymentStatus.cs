@@ -1,5 +1,8 @@
-﻿namespace CleanArthitecture.Domain.Enums
+﻿using System.Text.Json.Serialization;
+
+namespace CleanArthitecture.Domain.Enums
 {
+    [JsonConverter(typeof(JsonStringEnumConverter))]
     public enum PaymentStatus
     {
         Done = 1,
