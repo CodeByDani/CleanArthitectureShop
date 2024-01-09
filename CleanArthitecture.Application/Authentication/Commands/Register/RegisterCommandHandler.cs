@@ -1,17 +1,16 @@
-﻿using CleanArthitecture.Application.Common.Interfaces;
+﻿using CleanArthitecture.Application.Common.Errors;
+using CleanArthitecture.Application.Common.Interfaces;
 using CleanArthitecture.Application.Common.Interfaces.Authentication;
 using CleanArthitecture.Application.Events.RegisterCostomer;
 using CleanArthitecture.Application.Services.Authentication;
-using CleanArthitecture.Domain.Common.Errors;
 using CleanArthitecture.Domain.Entities;
 using CleanArthitecture.Domain.Repositories;
-using ErrorOr;
 using MapsterMapper;
 using MediatR;
 
 namespace CleanArthitecture.Application.Authentication.Commands.Register;
 public class RegisterCommandHandler :
-    IRequestHandler<RegisterCommand, ErrorOr<AuthenticationResult>>
+    IRequestHandler<RegisterCommand, AuthenticationResult>
 {
     private readonly IJwtTokenGenerator _jwtToken;
     private readonly ICustomerRepository _customerRepository;
@@ -31,13 +30,13 @@ public class RegisterCommandHandler :
         _mediator = mediator;
     }
 
-    public async Task<ErrorOr<AuthenticationResult>> Handle(RegisterCommand command, CancellationToken cancellationToken)
+    public async Task<AuthenticationResult> Handle(RegisterCommand command, CancellationToken cancellationToken)
     {
         Customer c = await _customerRepository.FindByEmailAsync(command.Email);
 
         if (c is not null)
         {
-            return Errors.Customer.DuplicateEmail;
+            throw new DuplicateEmailException();
         }
 
         var customer = new Customer

@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Net;
 
 namespace CleanArthitecture.Application.Common.Errors
 {
-    public class DuplicateEmailException : Exception, IServiceException
+    public class ValidationErrors(string message) : Exception, IServiceException
     {
-        public HttpStatusCode StatusCode => HttpStatusCode.Conflict;
+        public HttpStatusCode StatusCode => HttpStatusCode.BadRequest;
 
-        public string ErrorMessage => "Validation Error";
+        public string ErrorMessage { get; } = message;
+
     }
+
 }

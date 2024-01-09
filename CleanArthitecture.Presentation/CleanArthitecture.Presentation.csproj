@@ -26,6 +26,7 @@
 
   <ItemGroup>
     <Folder Include="Common\" />
+    <Folder Include="Http\" />
   </ItemGroup>
 
 </Project>

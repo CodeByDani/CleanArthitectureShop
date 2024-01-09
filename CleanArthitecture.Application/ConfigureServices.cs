@@ -1,10 +1,10 @@
-﻿using FluentValidation.AspNetCore;
+﻿using CleanArthitecture.Application.Common.ValidationBehaviors;
+using FluentValidation.AspNetCore;
 using Mapster;
 using MapsterMapper;
+using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
-using CleanArthitecture.Application.Common.ValidationBehaviors;
-using MediatR;
 
 namespace CleanArthitecture.Application
 {
@@ -19,7 +19,8 @@ namespace CleanArthitecture.Application
             services.AddSingleton(config);
             services.AddScoped<IMapper, ServiceMapper>();
             //! Fluent Validation
-            services.AddFluentValidation(cfg => cfg.RegisterValidatorsFromAssembly(Assembly.GetExecutingAssembly()));
+            services.AddFluentValidation(cfg =>
+                cfg.RegisterValidatorsFromAssembly(Assembly.GetExecutingAssembly()));
             //! For MediatR
             services.AddMediatR(cfg =>
                 cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
