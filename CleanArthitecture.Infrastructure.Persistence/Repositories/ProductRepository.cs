@@ -15,4 +15,12 @@ public class ProductRepository(DBContextConnection dbContext) :
             .ToListAsync();
         return products;
     }
+    public async Task<List<Product>> nothing(List<long> ProductIdeas)
+    {
+        List<Product> products = await dbContext.Products
+            .Where(p => ProductIdeas.Contains(p.Id))
+            .ToListAsync();
+
+        return products;
+    }
 }

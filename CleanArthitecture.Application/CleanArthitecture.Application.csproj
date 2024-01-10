@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Ben.Demystifier" Version="0.4.1" />
     <PackageReference Include="ErrorOr" Version="1.9.0" />
     <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0" />
     <PackageReference Include="MediatR" Version="12.2.0" />
@@ -16,10 +17,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CleanArthitecture.Domain\CleanArthitecture.Domain.csproj" />
+    <ProjectReference Include="..\Common\Common.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Common\Errors\" />
     <Folder Include="Common\ValidationBehaviors\" />
     <Folder Include="DTO\" />
     <Folder Include="Services\Address\Queries\" />

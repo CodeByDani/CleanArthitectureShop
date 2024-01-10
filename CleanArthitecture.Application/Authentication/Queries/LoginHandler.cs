@@ -1,4 +1,5 @@
-﻿using CleanArthitecture.Application.Common.Interfaces.Authentication;
+﻿using CleanArthitecture.Application.Common.Errors;
+using CleanArthitecture.Application.Common.Interfaces.Authentication;
 using CleanArthitecture.Application.Services.Authentication;
 using CleanArthitecture.Domain.Entities;
 using CleanArthitecture.Domain.Repositories;
@@ -20,14 +21,15 @@ public class LoginHandler : IRequestHandler<LoginQuery, AuthenticationResult>
     public async Task<AuthenticationResult> Handle(LoginQuery query, CancellationToken cancellationToken)
     {
         Customer customer = await _customerRepository.FindByEmailAsync(query.Email);
-        if (customer is not Customer)
+
+        if (customer is null)
         {
-            throw new Exception("Not Found");
+            throw new LoginError();
         }
 
         if (customer.Password != query.Password)
         {
-            throw new Exception("Password Incorrect");
+            throw new LoginError();
         }
 
         var token = _jwtToken.GenerateToken(customer);

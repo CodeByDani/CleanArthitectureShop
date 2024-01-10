@@ -15,7 +15,7 @@ public class RegisterCustomerLoggerHandler : INotificationHandler<RegisterCustom
     {
         _logger.LogInformation($"Customer {notification.FirstName} {notification.LastName} " +
                                $"With {notification.Email} Email Registered Successfully at" +
-                               $" {notification.RegistrationDate} Time ");
+                               $" {DateTime.Now} Time ");
         return Task.CompletedTask;
     }
 }

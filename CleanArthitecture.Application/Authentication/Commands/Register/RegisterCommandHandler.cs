@@ -5,6 +5,7 @@ using CleanArthitecture.Application.Events.RegisterCostomer;
 using CleanArthitecture.Application.Services.Authentication;
 using CleanArthitecture.Domain.Entities;
 using CleanArthitecture.Domain.Repositories;
+using Common.Helper;
 using MapsterMapper;
 using MediatR;
 
@@ -33,25 +34,14 @@ public class RegisterCommandHandler :
     public async Task<AuthenticationResult> Handle(RegisterCommand command, CancellationToken cancellationToken)
     {
         Customer c = await _customerRepository.FindByEmailAsync(command.Email);
+        c.ThrowIfNotNull<DuplicateEmailException>();
 
-        if (c is not null)
-        {
-            throw new DuplicateEmailException();
-        }
-
-        var customer = new Customer
-        {
-            FirstName = command.FirstName,
-            LastName = command.LastName,
-            Email = command.Email,
-            Password = command.Password,
-        };
+        var customer = _mapper.Map<Domain.Entities.Customer>(command);
         _customerRepository.Add(customer);
         await _uow.SaveAsync();
 
         //! Notification Sender
-        var result = _mapper.Map<RegisterCustomerEvent>(customer);
-        result.RegistrationDate = DateTime.Now;
+        var result = _mapper.Map<RegisterCustomerEvent>(command);
         await _mediator.Publish(result, cancellationToken);
 
         var token = _jwtToken.GenerateToken(customer);

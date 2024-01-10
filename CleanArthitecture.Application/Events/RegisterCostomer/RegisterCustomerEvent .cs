@@ -8,12 +8,10 @@ public class RegisterCustomerEvent : INotification
 
     public string LastName { get; }
     public string Email { get; }
-    public DateTime RegistrationDate { get; set; }
-    public RegisterCustomerEvent(string firstName, string lastName, string email, DateTime registrationDate)
+    public RegisterCustomerEvent(string firstName, string lastName, string email)
     {
         FirstName = firstName;
         LastName = lastName;
         Email = email;
-        RegistrationDate = registrationDate;
     }
 }
